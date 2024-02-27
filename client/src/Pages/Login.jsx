@@ -10,6 +10,7 @@ import { SlKey } from "react-icons/sl";
 import img from "../assets/task.png";
 import Rimg from '../assets/LoginTask.png';
 
+
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -34,10 +35,10 @@ const Login = () => {
 
     return (
         <Box bg='#B4B1C6' w='100%' p={4} >
-            <Box bg="white" borderRadius="20px" margin="60px" p="30px">
+            <Box bg="white" borderRadius="20px" margin="50px" p="30px">
                 <Img src={img} width="80px" ml="20px" />
-                <Flex mt="20px" mb="4%" >
-                    <Box width="50%" ml="8%" mt="2%">
+                <Flex mt="20px" mb="4%" direction={{ base: 'column', md: 'row' }}  >
+                    <Box width={{ base: "100%", md: "50%" }} ml="8%" mt="2%" >
                         <Flex gap={5} marginLeft="10%" fontStyle="normal" fontSize="3xl" fontWeight="300" fontFamily="Roboto">
                             <LuPartyPopper size="40px" />
                             <Text > You're back!!</Text>
@@ -92,6 +93,8 @@ const Login = () => {
                                     p="5px"
                                     borderRadius="20px"
                                     cursor="pointer"
+                                    alignItems="center"
+
                                 >
                                     <IoLogoGoogle onClick={handleGoogleLogin} />
                                 </Stack>
@@ -102,8 +105,8 @@ const Login = () => {
                         </Flex>
 
                     </Box>
-                    <Box  width="74%" ml="9%">
-                      <Img src={Rimg} width="85%"/>
+                    <Box width="74%" ml="9%">
+                        <Img src={Rimg} width="85%" />
                     </Box>
                 </Flex>
 

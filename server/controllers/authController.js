@@ -1,5 +1,6 @@
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 const User = require('../models/userModels');
 const ApiError = require('../utils/apiError');
@@ -49,17 +50,11 @@ passport.deserializeUser(async (id, done) => {
 exports.googleAuthHandler = passport.authenticate('google', { scope: ['email', 'profile'] });
 
 exports.googleAuthCallbackHandler = (req, res, next) => {
-    passport.authenticate('google', { successRedirect:"http://localhost:5173/",failureRedirect: '/' })(req, res, next);
+    passport.authenticate('google', { successRedirect: "http://localhost:5173/", failureRedirect: '/' })(req, res, next);
 };
 
 exports.signup = asyncHandler(async (req, res, next) => {
     const { name, email, password, googleId } = req.body;
-
-    const existingUser = await User.findOne({ $or: [{ email }, { googleId }] });
-
-    if (existingUser) {
-        return next(new ApiError('Email or Google ID is already in use', 400));
-    }
 
     let newUser;
 
@@ -70,15 +65,25 @@ exports.signup = asyncHandler(async (req, res, next) => {
             name,
             email,
             password: hashedPassword,
-            googleId: undefined,
+            googleId: null,
         });
-    }
+    } else if (googleId !== undefined && googleId !== null && googleId !== "") {
+        const existingGoogleIdUser = await User.findOne({ googleId });
 
-    if (googleId) {
+        if (existingGoogleIdUser) {
+            return next(new ApiError('Google ID is already in use', 400));
+        }
+
+        const existingBlankGoogleIdUser = await User.findOne({ googleId: null });
+
+        if (existingBlankGoogleIdUser) {
+            return next(new ApiError('Google ID is already in use', 400));
+        }
+
         newUser = await User.create({
             name,
-            email: undefined,
-            password: undefined,
+            email,
+            password: null,
             googleId,
         });
     }
