@@ -54,8 +54,8 @@ const Login = () => {
             )}
                 <Box bg="white" borderRadius="20px" margin="50px" p="30px">
                     <Img src={img} width="80px" ml="20px" />
-                    <Flex mt="20px" mb="4%" direction={{ base: 'column', md: 'row' }}  >
-                        <Box width={{ base: "100%", md: "50%" }} ml="8%" mt="2%" >
+                    <Flex mt="20px" mb="1%" direction={{ base: 'column', md: 'row' }}  >
+                        <Box width={{ base: "100%", md: "40%" }} ml="8%" mt="2%" >
                             <Flex gap={5} marginLeft="10%" fontStyle="normal" fontSize="3xl" fontWeight="300" fontFamily="Roboto">
                                 <LuPartyPopper size="40px" />
                                 <Text > You're back!!</Text>
@@ -101,7 +101,7 @@ const Login = () => {
                                         fontFamily="Roboto"
                                     >sign in</Button>
                                 </Flex>
-                                <Flex mt="4%" gap={3} ml="20px">
+                                <Flex mt="3%" gap={3} ml="20px">
                                     <Text
                                         fontSize="14px" fontWeight="300" fontFamily="Roboto"
                                     >got no accout? Register using these,</Text>
@@ -122,7 +122,7 @@ const Login = () => {
                             </Flex>
 
                         </Box>
-                        <Box width="74%" ml="9%">
+                        <Box width="50%" height="30%" ml="10%">
                             <Img src={Rimg} width="85%" />
                         </Box>
                     </Flex>
