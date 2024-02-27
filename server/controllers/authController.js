@@ -50,7 +50,7 @@ passport.deserializeUser(async (id, done) => {
 exports.googleAuthHandler = passport.authenticate('google', { scope: ['email', 'profile'] });
 
 exports.googleAuthCallbackHandler = (req, res, next) => {
-    passport.authenticate('google', { successRedirect: "http://localhost:5173/", failureRedirect: '/' })(req, res, next);
+    passport.authenticate('google', { successRedirect: "http://localhost:5173/table", failureRedirect: 'http://localhost:5173/login' })(req, res, next);
 };
 
 exports.signup = asyncHandler(async (req, res, next) => {

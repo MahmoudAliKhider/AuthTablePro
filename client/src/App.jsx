@@ -9,7 +9,6 @@ import TableTask from './Pages/TableTask';
 
 const App = () => {
 
-
   return (
     <BrowserRouter>
       <ChakraProvider theme={theme}>
@@ -19,7 +18,7 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/table" element={<TableTask />} />
 
-          <Route path="/" element={<Navigate to="/table" />} />
+          <Route path="/" element={<Navigate to="/login" />} />
         </Routes>
       </ChakraProvider>
     </BrowserRouter>

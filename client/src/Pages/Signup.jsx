@@ -19,7 +19,7 @@ const SignUp = () => {
   const handleRegister = async () => {
     try {
       await handleRegisterConn(name, email, password);
-      navigate('/')
+      navigate('/table')
     } catch (error) {
       console.log(error);
     }
