@@ -26,7 +26,6 @@ const Login = () => {
     const handleGoogleLogin = async () => {
         try {
             await handleGoogleAuth();
-            navigate('/')
         } catch (error) {
             console.log(error);
         }

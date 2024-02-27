@@ -13,9 +13,10 @@ export const handleLoginConn = async (email, password) => {
 
 export const handleGoogleAuth = async () => {
   try {
-    window.location.href = 'http://localhost:3001/api/v1/auth/google';
+    window.location.assign('http://localhost:3001/api/v1/auth/google');
   } catch (error) {
     console.error('Error during Google authentication:', error);
     throw error;
   }
 };
+
