@@ -10,10 +10,10 @@ exports.getClients = asyncHandler(async (req, res) => {
 exports.addClient = asyncHandler(async (req, res, next) => {
     const { name, surname, email, location, status } = req.body;
 
-    const existingClient = await Client.findOne({ googleId: req.body.googleId });
+    const existingClient = await Client.findOne({ googleId: req.body.email });
 
     if (existingClient) {
-        return next(new ApiError('Google ID is already in use', 400));
+        return next(new ApiError('email is already in use', 400));
     }
 
     const newClient = await Client.create({

@@ -26,6 +26,7 @@ export const handleRegisterConn = async (name, email, password) => {
     throw error;
   }
 };
+
 export const handleGoogleAuth = async () => {
   try {
     window.location.assign('http://localhost:3001/api/v1/auth/google');
@@ -35,5 +36,14 @@ export const handleGoogleAuth = async () => {
   }
 };
 
-
+export const getClientData = async () => {
+  try {
+    const response = await axios.get('http://localhost:3001/api/v1/client/clients');
+    console.log(response.data)
+    return response.data;
+  } catch (error) {
+    console.error('Error during login:', error);
+    throw error;
+  }
+};
 

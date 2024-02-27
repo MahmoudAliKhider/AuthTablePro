@@ -1,5 +1,4 @@
-// app.jsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ChakraProvider, CSSReset, theme } from '@chakra-ui/react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
