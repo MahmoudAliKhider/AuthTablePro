@@ -22,12 +22,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use((req, res, next) => {
-//     console.log(`${req.method} ${req.url}`);
-//     next();
-// });
 
 app.use("/api/v1/auth", require("./Routes/authRoutes"));
+app.use("/api/v1/client", require("./Routes/clientRoutes"));
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
