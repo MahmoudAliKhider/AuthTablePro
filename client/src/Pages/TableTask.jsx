@@ -75,7 +75,7 @@ const TableTask = () => {
   return (
     <Box bg="#F8FAFF" overflowX="auto">
       <Flex direction="column">
-        <Box bg="#fff" borderRadius="20px" width="77%" m="5%" ml="12%" overflowX="auto">
+        <Box bg="#fff" borderRadius="20px" width="76%" m="5%" mt="3%" ml="13%" overflowX="auto">
           <Flex justify="space-between" align="center" p="4">
             <InputGroup mr={3} bg="#F7FAFD" borderRadius="18px" border="1px solid #F1EBED">
               <InputLeftElement pointerEvents="none" justifyContent="space-between" ml="10px" mt="4px">

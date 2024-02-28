@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const Client = require('../Models/clientModel');
 const ApiError = require('../utils/apiError');
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 6;
 
 exports.getClients = asyncHandler(async (req, res) => {
     const page = parseInt(req.query.page, 10) || 1;

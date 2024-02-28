@@ -87,6 +87,7 @@ const TableComponent = () => {
             );
 
             console.log('Edit Response:', response.data);
+            window.location.reload();
             const updatedResponse = await axiosInstance.get('http://localhost:3001/api/v1/client/clients');
             setClients(updatedResponse.data);
 
@@ -254,7 +255,7 @@ const TableComponent = () => {
                                 date Added
                             </span>
                         </Th >
-                        <Th display={{ base: 'none', md: 'table-cell' }} width="190px">
+                        <Th display={{ base: 'none', md: 'table-cell' }} width="200px">
                             <span style={{ display: 'flex', alignItems: 'center' }}>
                                 Status <FaAngleDown color="#0EB0BF" />
                             </span>
