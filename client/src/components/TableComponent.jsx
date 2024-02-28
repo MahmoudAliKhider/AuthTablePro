@@ -20,6 +20,10 @@ import axiosInstance from '../api/index';
 import { GrEdit } from "react-icons/gr";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaAngleDown } from "react-icons/fa6";
+import { RiSkipLeftLine } from "react-icons/ri";
+import { RiSkipRightLine } from "react-icons/ri";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 import Verified from '../assets/accept.png';
 import Pending from "../assets/Pending.png";
@@ -37,19 +41,31 @@ const TableComponent = () => {
         location: '',
         status: '',
     });
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axiosInstance.get('http://localhost:3001/api/v1/client/clients');
-                setClients(response.data);
+                const response = await axiosInstance.get(`http://localhost:3001/api/v1/client/clients?page=${currentPage}`);
+                setClients(response.data.clients);
+                setTotalPages(response.data.totalPages);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
 
         fetchData();
-    }, []);
+    }, [currentPage]);
+
+    const handlePageChange = (newPage) => {
+        if (newPage >= 1 && newPage <= totalPages) {
+            setCurrentPage(newPage);
+            setSelectedRows([]);
+        }
+
+    };
 
     const handleEdit = (rowData) => {
         setEditingRowId(rowData._id);
@@ -297,6 +313,7 @@ const TableComponent = () => {
                 </Tbody>
             </Table>
 
+
             {/* Eddit */}
             <Flex>
                 {isEditing && (
@@ -381,6 +398,50 @@ const TableComponent = () => {
                 )}
             </Flex>
 
+            {/* Pagination */}
+            <Flex mt="8" justify="left" align="center" mb="4" ml="3" gap={1} width="38%">
+                <Button onClick={() => handlePageChange(1)} disabled={currentPage === 1} bg="#0EB0BF" color="white" borderRadius="17px"><RiSkipLeftLine size="25px" /></Button>
+                <Button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} bg="#0EB0BF" color="white" borderRadius="17px"><MdKeyboardArrowLeft size="60px" /> Prev</Button>
+                {/* <Text mx="4">Page {currentPage} of {totalPages}</Text> */}
+                <Box display="flex" alignItems="center">
+
+                    <Box
+                        border="1px solid #0EB0BF"
+                        borderRadius="5px"
+                        px="2"
+                        py="1"
+                        mr="2"
+                    >
+                        <Text color="#0EB0BF" fontWeight="bold">
+                            {currentPage}
+                        </Text>
+                    </Box>
+                    <Box
+
+                        px="2"
+                        py="1"
+                        mr="2"
+                    >
+                        <Text color="#0EB0BF" fontWeight="bold">
+                            ...
+                        </Text>
+                    </Box>
+                    <Box
+                        border="1px solid #0EB0BF"
+                        borderRadius="5px"
+                        px="2"
+                        py="1"
+                    >
+                        <Text color="#0EB0BF" fontWeight="bold">
+                            {totalPages}
+                        </Text>
+                    </Box>
+
+                </Box>
+
+                <Button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} bg="#0EB0BF" color="white" borderRadius="17px">Next  <MdKeyboardArrowRight size="60px" /></Button>
+                <Button onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} bg="#0EB0BF" color="white" borderRadius="17px"><RiSkipRightLine size="25px" /></Button>
+            </Flex>
         </Box>
     )
 }

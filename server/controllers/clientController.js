@@ -1,11 +1,24 @@
 const asyncHandler = require('express-async-handler');
 const Client = require('../Models/clientModel');
 const ApiError = require('../utils/apiError');
+const PAGE_SIZE = 5;
 
 exports.getClients = asyncHandler(async (req, res) => {
-    const clients = await Client.find();
-    res.status(200).json(clients);
+    const page = parseInt(req.query.page, 10) || 1;
+    const skip = (page - 1) * PAGE_SIZE;
+
+    const totalClients = await Client.countDocuments();
+    const totalPages = Math.ceil(totalClients / PAGE_SIZE);
+
+    const clients = await Client.find().skip(skip).limit(PAGE_SIZE);
+
+    res.status(200).json({
+        clients,
+        totalPages,
+        currentPage: page,
+    });
 });
+
 
 exports.addClient = asyncHandler(async (req, res, next) => {
     const { name, surname, email, location, status } = req.body;
