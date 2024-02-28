@@ -42,7 +42,6 @@ const SignUp = () => {
               <LuPartyPopper size="40px" />
               <Text > Join Us!!</Text>
             </Flex>
-
             <Flex direction="column" gap={4} marginTop="20px">
               <InputGroup>
                 <InputRightElement pointerEvents="none">

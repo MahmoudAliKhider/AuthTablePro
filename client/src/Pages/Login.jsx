@@ -9,7 +9,6 @@ import { SlKey } from "react-icons/sl";
 import {
     Alert,
     AlertIcon,
-    AlertTitle,
 } from '@chakra-ui/react';
 
 import img from "../assets/task.png";
@@ -46,19 +45,19 @@ const Login = () => {
     return (
         <>
             <Box bg='#B4B1C6' w='100%' p={5} >
-            {showErrorAlert && (
-                <Alert status='error'>
-                    <AlertIcon />
-                    Incorrect Email or Password!
-                </Alert>
-            )}
+                {showErrorAlert && (
+                    <Alert status='error'>
+                        <AlertIcon />
+                        Incorrect Email or Password!
+                    </Alert>
+                )}
                 <Box bg="white" borderRadius="20px" margin="60px" mt="20px" mb="10px" p="30px">
                     <Img src={img} width="80px" ml="20px" />
                     <Flex mt="20px" mb="1%" direction={{ base: 'column', md: 'row' }}  >
                         <Box width={{ base: "100%", md: "40%" }} ml="8%" mt="2%" >
                             <Flex gap={5} marginLeft="10%" fontStyle="normal" fontSize="3xl" fontWeight="300" fontFamily="Roboto">
                                 <LuPartyPopper size="40px" />
-                                <Text > You're back!!</Text>
+                                <Text > You `re back!!</Text>
                             </Flex>
 
                             <Flex direction="column" gap={4} marginTop="20px">

@@ -44,7 +44,6 @@ const TableComponent = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
 
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -314,7 +313,6 @@ const TableComponent = () => {
                 </Tbody>
             </Table>
 
-
             {/* Eddit */}
             <Flex>
                 {isEditing && (
@@ -442,7 +440,9 @@ const TableComponent = () => {
 
                 <Button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} bg="#0EB0BF" color="white" borderRadius="17px">Next  <MdKeyboardArrowRight size="60px" /></Button>
                 <Button onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} bg="#0EB0BF" color="white" borderRadius="17px"><RiSkipRightLine size="25px" /></Button>
+
             </Flex>
+
         </Box>
     )
 }
